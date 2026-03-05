@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Script — 15 NotebookLM Prompts for Sales & Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0A0A1A;
+  --bg-secondary: #111128;
+  --bg-card: #16163a;
+  --bg-card-hover: #1e1e4a;
+  --purple: #A855F7;
+  --purple-dim: rgba(168,85,247,0.15);
+  --purple-glow: rgba(168,85,247,0.4);
+  --cyan: #06B6D4;
+  --cyan-dim: rgba(6,182,212,0.15);
+  --cyan-glow: rgba(6,182,212,0.4);
+  --green: #22C55E;
+  --green-dim: rgba(34,197,94,0.15);
+  --green-glow: rgba(34,197,94,0.4);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-dim: #64748B;
+  --border: rgba(148,163,184,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans Thai', 'Space Grotesk', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 1000;
+  background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
+  transition: width 0.1s;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(10,10,26,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.navbar-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; }
+.navbar-brand span { color: var(--cyan); }
+.navbar-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.navbar-links a {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.8rem;
+  padding: 0.3rem 0.7rem; border-radius: 6px; transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.navbar-links a:hover, .navbar-links a.active {
+  color: var(--cyan); border-color: var(--cyan-dim); background: var(--cyan-dim);
+}
+
+/* Hero */
+.hero {
+  min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 8rem 2rem 4rem;
+  background: radial-gradient(ellipse at 50% 30%, rgba(168,85,247,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 70%, rgba(6,182,212,0.08) 0%, transparent 50%);
+  position: relative;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--purple-dim); border: 1px solid var(--purple-glow);
+  padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem;
+  color: var(--purple); margin-bottom: 1.5rem; position: relative;
+}
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700; line-height: 1.2; margin-bottom: 1rem; position: relative;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { color: var(--text-secondary); font-size: 1.15rem; max-width: 650px; position: relative; margin-bottom: 2rem; }
+.hero-stats {
+  display: flex; gap: 2.5rem; position: relative; flex-wrap: wrap; justify-content: center;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700;
+}
+.hero-stat .label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }
+.hero-stat:nth-child(1) .num { color: var(--purple); }
+.hero-stat:nth-child(2) .num { color: var(--cyan); }
+.hero-stat:nth-child(3) .num { color: var(--green); }
+
+/* Section */
+.section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.section-subtitle { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem; }
+
+/* Production Notes */
+.prod-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 3rem;
+}
+.prod-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.2rem; transition: all 0.3s;
+}
+.prod-card:hover { border-color: var(--purple-glow); transform: translateY(-2px); }
+.prod-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.prod-card .label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+.prod-card .value { font-size: 0.95rem; color: var(--text-primary); }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 3rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 1rem; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--purple), var(--cyan), var(--green), var(--purple), var(--cyan), var(--green));
+}
+
+/* Clip Card */
+.clip-card {
+  position: relative; margin-bottom: 3rem;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; transition: all 0.4s;
+}
+.clip-card:hover { border-color: var(--purple-glow); box-shadow: 0 0 30px var(--purple-dim); }
+.clip-card::before {
+  content: ''; position: absolute; left: -2.05rem; top: 2rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 3px solid; z-index: 2;
+}
+.clip-card:nth-child(1)::before { border-color: var(--purple); background: var(--bg-primary); box-shadow: 0 0 10px var(--purple-glow); }
+.clip-card:nth-child(2)::before { border-color: var(--cyan); background: var(--bg-primary); box-shadow: 0 0 10px var(--cyan-glow); }
+.clip-card:nth-child(3)::before { border-color: var(--green); background: var(--bg-primary); box-shadow: 0 0 10px var(--green-glow); }
+.clip-card:nth-child(4)::before { border-color: var(--purple); background: var(--bg-primary); box-shadow: 0 0 10px var(--purple-glow); }
+.clip-card:nth-child(5)::before { border-color: var(--cyan); background: var(--bg-primary); box-shadow: 0 0 10px var(--cyan-glow); }
+.clip-card:nth-child(6)::before { border-color: var(--green); background: var(--bg-primary); box-shadow: 0 0 10px var(--green-glow); }
+
+.clip-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 1.5rem; cursor: pointer; user-select: none;
+}
+.clip-header-left { display: flex; align-items: center; gap: 1rem; }
+.clip-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700;
+  padding: 0.3rem 0.8rem; border-radius: 6px; letter-spacing: 1px;
+}
+.clip-card:nth-child(odd) .clip-num { background: var(--purple-dim); color: var(--purple); }
+.clip-card:nth-child(even) .clip-num { background: var(--cyan-dim); color: var(--cyan); }
+.clip-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; }
+.clip-timing {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim);
+  background: rgba(255,255,255,0.05); padding: 0.25rem 0.6rem; border-radius: 4px;
+}
+.clip-toggle {
+  font-size: 1.2rem; color: var(--text-dim); transition: transform 0.3s;
+}
+.clip-card.open .clip-toggle { transform: rotate(180deg); }
+
+.clip-body { padding: 0 1.5rem 1.5rem; display: none; }
+.clip-card.open .clip-body { display: block; }
+
+/* Sub-sections inside clip */
+.sub-section { margin-bottom: 1.5rem; }
+.sub-label {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-dim); margin-bottom: 0.6rem;
+}
+.sub-label .dot { width: 6px; height: 6px; border-radius: 50%; }
+.sub-label .dot.purple { background: var(--purple); }
+.sub-label .dot.cyan { background: var(--cyan); }
+.sub-label .dot.green { background: var(--green); }
+
+/* Visual Description */
+.visual-desc {
+  background: rgba(168,85,247,0.06); border-left: 3px solid var(--purple);
+  padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; color: var(--text-secondary);
+  font-size: 0.9rem; line-height: 1.8;
+}
+
+/* Narration */
+.narration-block { margin-bottom: 1rem; }
+.narration-lang {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+}
+.narration-lang.th { color: var(--cyan); }
+.narration-lang.en { color: var(--text-dim); }
+.narration-text {
+  font-size: 1.1rem; font-weight: 500; padding: 0.8rem 1rem;
+  border-radius: 8px; position: relative;
+}
+.narration-text.th {
+  background: var(--cyan-dim); border: 1px solid rgba(6,182,212,0.2);
+  color: var(--text-primary);
+}
+.narration-text.en {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  color: var(--text-secondary); font-style: italic; font-size: 0.95rem;
+}
+.copy-btn {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  background: rgba(255,255,255,0.1); border: none; color: var(--text-secondary);
+  padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem;
+  transition: all 0.3s; font-family: 'JetBrains Mono', monospace;
+}
+.copy-btn:hover { background: var(--cyan-dim); color: var(--cyan); }
+.copy-btn.copied { background: var(--green-dim); color: var(--green); }
+
+/* Timing Table */
+.timing-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.timing-table th {
+  text-align: left; padding: 0.5rem 0.8rem; font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--text-dim); border-bottom: 1px solid var(--border);
+}
+.timing-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.timing-table td:first-child {
+  font-family: 'JetBrains Mono', monospace; color: var(--green); font-size: 0.8rem; white-space: nowrap;
+}
+.timing-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* Speaker Notes */
+.speaker-notes {
+  background: var(--green-dim); border-left: 3px solid var(--green);
+  padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; color: var(--text-secondary);
+  font-size: 0.9rem; line-height: 1.8;
+}
+
+/* Full Script */
+.full-script-box {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.5rem; position: relative; margin-bottom: 3rem;
+}
+.full-script-box pre {
+  font-family: 'JetBrains Mono', 'IBM Plex Sans Thai', monospace;
+  font-size: 0.9rem; line-height: 2; color: var(--text-secondary); white-space: pre-wrap;
+}
+.full-script-box .timecode { color: var(--green); font-weight: 500; }
+.full-script-box .highlight { color: var(--text-primary); }
+.copy-script-btn {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--purple-dim); border: 1px solid var(--purple-glow);
+  color: var(--purple); padding: 0.5rem 1rem; border-radius: 8px;
+  cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.3s;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.copy-script-btn:hover { background: var(--purple); color: white; }
+.copy-script-btn.copied { background: var(--green); color: white; border-color: var(--green); }
+
+/* Specs Grid */
+.specs-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin-bottom: 3rem;
+}
+.spec-item {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1rem 1.2rem; display: flex; align-items: center; gap: 1rem;
+}
+.spec-icon {
+  width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.spec-icon.purple { background: var(--purple-dim); }
+.spec-icon.cyan { background: var(--cyan-dim); }
+.spec-icon.green { background: var(--green-dim); }
+.spec-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.spec-value { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-primary); }
+
+/* Color Palette */
+.color-grid { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.color-swatch {
+  flex: 1; min-width: 150px; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.color-preview { height: 60px; }
+.color-info { padding: 0.8rem; background: var(--bg-card); }
+.color-name { font-size: 0.8rem; color: var(--text-secondary); }
+.color-hex { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-primary); }
+
+/* Key Messages */
+.msg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+.msg-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.2rem; display: flex; gap: 1rem; align-items: flex-start; transition: all 0.3s;
+}
+.msg-card:hover { border-color: var(--purple-glow); transform: translateY(-2px); }
+.msg-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700;
+  width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.msg-card:nth-child(1) .msg-num { background: var(--purple-dim); color: var(--purple); }
+.msg-card:nth-child(2) .msg-num { background: var(--cyan-dim); color: var(--cyan); }
+.msg-card:nth-child(3) .msg-num { background: var(--green-dim); color: var(--green); }
+.msg-card:nth-child(4) .msg-num { background: var(--purple-dim); color: var(--purple); }
+.msg-card:nth-child(5) .msg-num { background: var(--cyan-dim); color: var(--cyan); }
+.msg-card:nth-child(6) .msg-num { background: var(--green-dim); color: var(--green); }
+.msg-content .msg-text { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.msg-content .msg-purpose { font-size: 0.8rem; color: var(--text-dim); }
+
+/* Footer */
+.footer {
+  text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border);
+  color: var(--text-dim); font-size: 0.85rem;
+}
+.footer a { color: var(--cyan); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* Back to Top */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px;
+  background: var(--purple); border: none; border-radius: 50%; color: white;
+  font-size: 1.2rem; cursor: pointer; display: none; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px var(--purple-glow); transition: all 0.3s; z-index: 999;
+}
+.back-to-top:hover { transform: scale(1.1); }
+.back-to-top.visible { display: flex; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar { padding: 0.5rem 1rem; flex-direction: column; gap: 0.5rem; }
+  .navbar-links { justify-content: center; }
+  .hero { padding: 7rem 1.5rem 3rem; min-height: 60vh; }
+  .hero-stats { gap: 1.5rem; }
+  .section { padding: 2.5rem 1rem; }
+  .timeline { padding-left: 2rem; }
+  .timeline::before { left: 0.5rem; }
+  .clip-card::before { left: -1.55rem; width: 10px; height: 10px; }
+  .clip-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .clip-timing { align-self: flex-start; }
+  .color-grid { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-brand">Video Script <span>// NotebookLM</span></div>
+  <div class="navbar-links">
+    <a href="#overview">Overview</a>
+    <a href="#clips">Clips</a>
+    <a href="#full-script">Full Script</a>
+    <a href="#specs">Specs</a>
+    <a href="#messages">Messages</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">Video Presentation Script</div>
+  <h1>15 NotebookLM Prompts<br><span class="gradient">Video Script</span></h1>
+  <p>สคริปต์วิดีโอฉบับสมบูรณ์ พร้อม Timing, Visual Cues, คำบรรยายสองภาษา และ Speaker Notes สำหรับทุกคลิป</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">48s</div>
+      <div class="label">Total Duration</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">6</div>
+      <div class="label">Video Clips</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">TH+EN</div>
+      <div class="label">Bilingual Script</div>
+    </div>
+  </div>
+</section>
+
+<!-- Production Notes -->
+<section class="section" id="overview">
+  <div class="section-title">Production Notes</div>
+  <div class="section-subtitle">ข้อมูลการผลิตและแนวทางของวิดีโอ</div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="icon">&#127919;</div>
+      <div class="label">Target Audience</div>
+      <div class="value">ทีม Sales & Marketing ที่ต้องการใช้ AI เพิ่มประสิทธิภาพ</div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">&#127908;</div>
+      <div class="label">Tone</div>
+      <div class="value">Professional แต่เข้าถึงง่าย กระตุ้นให้ลงมือทำ</div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">&#128483;</div>
+      <div class="label">Narrator</div>
+      <div class="value">เสียงผู้หญิง พูดชัด จังหวะมั่นใจ</div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">&#127925;</div>
+      <div class="label">BGM</div>
+      <div class="value">Upbeat electronic / corporate tech (volume 15%)</div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">&#9201;</div>
+      <div class="label">Pacing</div>
+      <div class="value">Moderate — ให้เวลาผู้ชมอ่านภาพและซึมซับข้อมูล</div>
+    </div>
+  </div>
+</section>
+
+<!-- Clips Timeline -->
+<section class="section" id="clips">
+  <div class="section-title">Clip-by-Clip Breakdown</div>
+  <div class="section-subtitle">คลิกแต่ละคลิปเพื่อดูรายละเอียด Visual, Narration, Timing และ Speaker Notes</div>
+
+  <div class="timeline">
+
+    <!-- CLIP 1 -->
+    <div class="clip-card open">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 1</span>
+          <span class="clip-title">Opening Hook</span>
+        </div>
+        <span class="clip-timing">0:00 – 0:08</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">กล้องเคลื่อนไปข้างหน้าผ่านทางเดินมืดที่มีแสงนีออนสีม่วงเรืองรองตามผนัง ค่อยๆ เปิดเผยพื้นที่ทำงานแห่งอนาคตที่เต็มไปด้วยจอ Holographic แสดงกราฟและแดชบอร์ดการขาย จอกลางแสดงสัญลักษณ์ "10x" เรืองแสงสีเขียว</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"จะเป็นยังไง ถ้าทีม Sales ของคุณ ทำงานได้เร็วขึ้น 10 เท่า ด้วย AI?"<button class="copy-btn" onclick="copyText(this, 'จะเป็นยังไง ถ้าทีม Sales ของคุณ ทำงานได้เร็วขึ้น 10 เท่า ด้วย AI?')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"What if your Sales team could work 10 times faster with AI?"<button class="copy-btn" onclick="copyText(this, 'What if your Sales team could work 10 times faster with AI?')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:00</td><td>กล้องเริ่มในทางเดินมืด, เสียง BGM เริ่ม fade in</td></tr>
+              <tr><td>0:01</td><td>เริ่มพูด "จะเป็นยังไง..."</td></tr>
+              <tr><td>0:03</td><td>จอ Holographic เริ่มเปิดทีละจอ</td></tr>
+              <tr><td>0:05</td><td>"...ทำงานได้เร็วขึ้น 10 เท่า..."</td></tr>
+              <tr><td>0:07</td><td>สัญลักษณ์ 10x ปรากฏ, จบประโยค "...ด้วย AI?"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">เปิดด้วยคำถามกระตุ้นความสนใจ ไม่ต้องรีบ ปล่อยให้ภาพทำงาน ทิ้งจังหวะหลัง "10 เท่า" สักครู่ก่อนพูด "ด้วย AI" เพื่อสร้าง impact</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 2 -->
+    <div class="clip-card">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 2</span>
+          <span class="clip-title">What is NotebookLM?</span>
+        </div>
+        <span class="clip-timing">0:08 – 0:16</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">ทรงกลม AI เรืองแสงสีฟ้าลอยอยู่กลางจอ ไอคอนเอกสาร 3 ชนิด (PDF สีแดง, Document สีน้ำเงิน, Slides สีเหลือง) ลอยเข้าหาทรงกลมพร้อม motion trail เมื่อเอกสารถูกดูดเข้าไป จะสลายเป็นอนุภาคข้อมูลสีฟ้า ฝั่งขวาจะมีการ์ดข้อมูลที่จัดระเบียบแล้วค่อยๆ ปรากฏออกมา</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"NotebookLM คือ AI จาก Google ที่อ่านเอกสารของคุณ แล้วตอบจากข้อมูลจริง ไม่มั่ว ไม่แต่ง"<button class="copy-btn" onclick="copyText(this, 'NotebookLM คือ AI จาก Google ที่อ่านเอกสารของคุณ แล้วตอบจากข้อมูลจริง ไม่มั่ว ไม่แต่ง')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"NotebookLM is an AI from Google that reads your documents and answers from real data. No hallucinations. No fabrication."<button class="copy-btn" onclick="copyText(this, 'NotebookLM is an AI from Google that reads your documents and answers from real data. No hallucinations. No fabrication.')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:08</td><td>ทรงกลม AI ปรากฏ, เอกสารเริ่มลอยเข้า</td></tr>
+              <tr><td>0:09</td><td>เริ่มพูด "NotebookLM คือ AI จาก Google..."</td></tr>
+              <tr><td>0:11</td><td>เอกสารถูกดูดเข้าทรงกลม, สลายเป็นอนุภาค</td></tr>
+              <tr><td>0:13</td><td>"...แล้วตอบจากข้อมูลจริง..." — การ์ดข้อมูลเริ่มปรากฏฝั่งขวา</td></tr>
+              <tr><td>0:15</td><td>"ไม่มั่ว ไม่แต่ง" — ทรงกลมเรืองแสงสว่างขึ้น</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">เน้นคำว่า "ข้อมูลจริง" ให้ชัด เพราะเป็น key differentiator ของ NotebookLM ที่ต่างจาก ChatGPT คือไม่ hallucinate เพราะตอบจากเอกสารที่อัปโหลดเท่านั้น ทิ้งจังหวะก่อน "ไม่มั่ว ไม่แต่ง" เพื่อเน้นย้ำ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 3 -->
+    <div class="clip-card">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 3</span>
+          <span class="clip-title">Sales Prompts Highlight</span>
+        </div>
+        <span class="clip-timing">0:16 – 0:24</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">ในห้อง Command Center สไตล์ Cyberpunk การ์ด Holographic 3 ใบปรากฏทีละใบ: การ์ดม่วง (โล่ = Objection Rebuttal), การ์ดฟ้า (ดาบไขว้ = Battlecard), การ์ดเขียว (เป้า = Closing Technique) อนุภาคแสงไหลเชื่อมระหว่าง 3 การ์ด</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"มี Prompt สำหรับ Sales ถึง 11 ตัว ตั้งแต่โต้ข้อโต้แย้ง เตรียม Battlecard ไปจนถึงปิดการขาย"<button class="copy-btn" onclick="copyText(this, 'มี Prompt สำหรับ Sales ถึง 11 ตัว ตั้งแต่โต้ข้อโต้แย้ง เตรียม Battlecard ไปจนถึงปิดการขาย')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"There are 11 Sales Prompts — from handling objections, preparing Battlecards, all the way to closing deals."<button class="copy-btn" onclick="copyText(this, 'There are 11 Sales Prompts — from handling objections, preparing Battlecards, all the way to closing deals.')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:16</td><td>การ์ดม่วง (Objection Rebuttal) ปรากฏฝั่งซ้าย</td></tr>
+              <tr><td>0:17</td><td>เริ่มพูด "มี Prompt สำหรับ Sales ถึง 11 ตัว..."</td></tr>
+              <tr><td>0:19</td><td>การ์ดฟ้า (Battlecard) ตกลงมาจากด้านบน ลงตรงกลาง</td></tr>
+              <tr><td>0:20</td><td>"...ตั้งแต่โต้ข้อโต้แย้ง เตรียม Battlecard..."</td></tr>
+              <tr><td>0:22</td><td>การ์ดเขียว (Closing) ซูมเข้ามาจากด้านหลัง ลงฝั่งขวา</td></tr>
+              <tr><td>0:23</td><td>"...ไปจนถึงปิดการขาย" — อนุภาคแสงเชื่อม 3 การ์ด</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">พูดตัวเลข "11 ตัว" ให้ชัดเจน เพื่อสร้างความประทับใจว่ามีเครื่องมือครบ ไม่ต้องอธิบายทุก Prompt แค่ highlight 3 ตัวที่สำคัญที่สุด: โต้แย้ง, เตรียมสู้คู่แข่ง, ปิดการขาย — ครอบคลุมทั้ง Sales Cycle</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 4 -->
+    <div class="clip-card">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 4</span>
+          <span class="clip-title">Marketing & Strategy</span>
+        </div>
+        <span class="clip-timing">0:24 – 0:32</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">Sales Funnel แบบ Holographic ลอยกลางห้อง เริ่มจากโครงร่างเส้นลวด ค่อยๆ เติมสีทีละชั้น — ชั้นบนสีม่วง, ชั้นกลางสีฟ้า, ชั้นล่างสีเขียว การ์ดเล็กๆ 4 ใบโคจรรอบ Funnel แสงพุ่งขึ้นจากด้านบน กล้องเคลื่อนเล็กน้อยไปทางขวา</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"ครอบคลุมทั้ง Marketing และ Strategy ตั้งแต่สร้าง Value Proposition ไปจนถึง Executive Summary"<button class="copy-btn" onclick="copyText(this, 'ครอบคลุมทั้ง Marketing และ Strategy ตั้งแต่สร้าง Value Proposition ไปจนถึง Executive Summary')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"Covering both Marketing and Strategy — from crafting Value Propositions to Executive Summaries."<button class="copy-btn" onclick="copyText(this, 'Covering both Marketing and Strategy — from crafting Value Propositions to Executive Summaries.')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:24</td><td>Funnel โครงร่างปรากฏ</td></tr>
+              <tr><td>0:25</td><td>เริ่มพูด "ครอบคลุมทั้ง Marketing..." — ชั้นบนเติมสีม่วง</td></tr>
+              <tr><td>0:27</td><td>"...และ Strategy..." — ชั้นกลางเติมสีฟ้า</td></tr>
+              <tr><td>0:29</td><td>"...ตั้งแต่สร้าง Value Proposition..." — ชั้นล่างเติมสีเขียว</td></tr>
+              <tr><td>0:31</td><td>"...ไปจนถึง Executive Summary" — การ์ดโคจร, แสงพุ่งขึ้น</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">ใช้ภาพ Funnel เพื่อสื่อว่า Prompts ครอบคลุมทุกขั้นตอนของ Sales Process ตั้งแต่ Awareness (บน) ไปจนถึง Closing (ล่าง) การเติมสีทีละชั้นช่วยให้ผู้ชมเห็นว่ามีเครื่องมือสำหรับทุก stage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 5 -->
+    <div class="clip-card">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 5</span>
+          <span class="clip-title">Time Savings</span>
+        </div>
+        <span class="clip-timing">0:32 – 0:40</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">หน้าจอแบ่งครึ่ง: ฝั่งซ้ายสีเทา (ออฟฟิศแบบเดิม) มีนาฬิกาแขวนผนังและกองเอกสาร vs ฝั่งขวาสีนีออน (AI Interface) มีวงกลม Progress 0%&#8594;100% เส้นแบ่งสีฟ้าเรืองแสงค่อยๆ เลื่อนไปทางซ้าย ฝั่ง AI ขยายใหญ่ขึ้น เมื่อถึง 100% เครื่องหมายถูกสีเขียวปรากฏ</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"ประหยัดเวลาได้กว่า 7 ชั่วโมงต่อดีล เปลี่ยนเวลาที่เสียไปกับเอกสาร มาปิดการขายแทน"<button class="copy-btn" onclick="copyText(this, 'ประหยัดเวลาได้กว่า 7 ชั่วโมงต่อดีล เปลี่ยนเวลาที่เสียไปกับเอกสาร มาปิดการขายแทน')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"Save over 7 hours per deal. Turn time wasted on paperwork into time spent closing sales."<button class="copy-btn" onclick="copyText(this, 'Save over 7 hours per deal. Turn time wasted on paperwork into time spent closing sales.')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:32</td><td>Split screen ปรากฏ — ฝั่งซ้ายเทา, ฝั่งขวานีออน</td></tr>
+              <tr><td>0:33</td><td>เริ่มพูด "ประหยัดเวลาได้กว่า 7 ชั่วโมงต่อดีล..."</td></tr>
+              <tr><td>0:35</td><td>Progress meter เริ่มเพิ่มขึ้น, กองเอกสารฝั่งซ้ายสูงขึ้น</td></tr>
+              <tr><td>0:37</td><td>"...เปลี่ยนเวลาที่เสียไปกับเอกสาร..." — เส้นแบ่งเลื่อนซ้าย</td></tr>
+              <tr><td>0:39</td><td>"...มาปิดการขายแทน" — 100% + เครื่องหมายถูกเขียว</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">ตัวเลข "7 ชั่วโมง" เป็น key message ที่ต้องพูดให้ชัดและหนักแน่น ภาพ split screen ทำให้เห็น contrast ชัดเจนระหว่างวิธีเก่ากับวิธีใหม่ จบด้วยการ reframe — ไม่ใช่แค่ "ประหยัดเวลา" แต่ "เอาเวลาไปปิดการขาย" ซึ่งเป็นสิ่งที่ Sales ทุกคนอยากได้</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 6 -->
+    <div class="clip-card">
+      <div class="clip-header" onclick="toggleClip(this)">
+        <div class="clip-header-left">
+          <span class="clip-num">CLIP 6</span>
+          <span class="clip-title">Call to Action (CTA)</span>
+        </div>
+        <span class="clip-timing">0:40 – 0:48</span>
+        <span class="clip-toggle">&#9660;</span>
+      </div>
+      <div class="clip-body">
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot purple"></span> Visual Description</div>
+          <div class="visual-desc">พื้นหลังมืดสไตล์ Cyberpunk พื้นที่ชื่อเรื่องสีขาวปรากฏด้านบน แถบนีออนสีเขียวค่อยๆ ก่อตัวจากซ้ายไปขวาพร้อมอนุภาคแสง เมื่อแถบสมบูรณ์จะมีแสง starburst ไอคอน 3 วงกลมปรากฏทีละอัน: ลูกโลกสีม่วง (เข้าเว็บ), คลิปบอร์ดสีฟ้า (Copy), จรวดสีเขียว (เริ่มใช้งาน)</div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot cyan"></span> Narration Script</div>
+          <div class="narration-block">
+            <div class="narration-lang th">Thai</div>
+            <div class="narration-text th">"เข้าเว็บไซต์ Copy Prompt แล้วเริ่มใช้งานได้ทันที วันนี้เลย"<button class="copy-btn" onclick="copyText(this, 'เข้าเว็บไซต์ Copy Prompt แล้วเริ่มใช้งานได้ทันที วันนี้เลย')">Copy</button></div>
+          </div>
+          <div class="narration-block">
+            <div class="narration-lang en">English</div>
+            <div class="narration-text en">"Visit the website, copy the prompts, and start using them right away. Today."<button class="copy-btn" onclick="copyText(this, 'Visit the website, copy the prompts, and start using them right away. Today.')">Copy</button></div>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Timing Breakdown</div>
+          <table class="timing-table">
+            <thead><tr><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>0:40</td><td>พื้นที่ชื่อเรื่องปรากฏด้านบน</td></tr>
+              <tr><td>0:41</td><td>เริ่มพูด "เข้าเว็บไซต์..." — แถบเขียวเริ่มก่อตัว</td></tr>
+              <tr><td>0:42</td><td>ไอคอนลูกโลกม่วงปรากฏ</td></tr>
+              <tr><td>0:43</td><td>"...Copy Prompt..." — ไอคอนคลิปบอร์ดฟ้าปรากฏ</td></tr>
+              <tr><td>0:44</td><td>"...แล้วเริ่มใช้งานได้ทันที..." — ไอคอนจรวดเขียวปรากฏ</td></tr>
+              <tr><td>0:46</td><td>"วันนี้เลย" — แสง starburst, อนุภาคลอย</td></tr>
+              <tr><td>0:48</td><td>BGM fade out, จบวิดีโอ</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label"><span class="dot green"></span> Speaker Notes</div>
+          <div class="speaker-notes">CTA ต้องชัดเจนและง่าย: 3 ขั้นตอน (เข้าเว็บ &#8594; Copy &#8594; ใช้งาน) จบด้วย "วันนี้เลย" เพื่อสร้าง urgency ทิ้งจังหวะหลัง "วันนี้เลย" ให้ BGM fade out อย่างสวยงาม</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end timeline -->
+</section>
+
+<!-- Full Script -->
+<section class="section" id="full-script">
+  <div class="section-title">Full Narration Script</div>
+  <div class="section-subtitle">สคริปต์ต่อเนื่องพร้อม Timecode สำหรับอ่านรวดเดียว</div>
+  <div class="full-script-box">
+    <button class="copy-script-btn" id="copyFullScript" onclick="copyFullScript()">Copy Full Script</button>
+    <pre><span class="timecode">[0:00]</span> <span class="highlight">จะเป็นยังไง ถ้าทีม Sales ของคุณ ทำงานได้เร็วขึ้น 10 เท่า ด้วย AI?</span>
+
+<span class="timecode">[0:08]</span> <span class="highlight">NotebookLM คือ AI จาก Google ที่อ่านเอกสารของคุณ แล้วตอบจากข้อมูลจริง</span>
+       ไม่มั่ว ไม่แต่ง
+
+<span class="timecode">[0:16]</span> <span class="highlight">มี Prompt สำหรับ Sales ถึง 11 ตัว ตั้งแต่โต้ข้อโต้แย้ง เตรียม Battlecard</span>
+       ไปจนถึงปิดการขาย
+
+<span class="timecode">[0:24]</span> <span class="highlight">ครอบคลุมทั้ง Marketing และ Strategy ตั้งแต่สร้าง Value Proposition</span>
+       ไปจนถึง Executive Summary
+
+<span class="timecode">[0:32]</span> <span class="highlight">ประหยัดเวลาได้กว่า 7 ชั่วโมงต่อดีล เปลี่ยนเวลาที่เสียไปกับเอกสาร</span>
+       มาปิดการขายแทน
+
+<span class="timecode">[0:40]</span> <span class="highlight">เข้าเว็บไซต์ Copy Prompt แล้วเริ่มใช้งานได้ทันที วันนี้เลย</span>
+
+<span class="timecode">[0:48]</span> — END —</pre>
+  </div>
+</section>
+
+<!-- Technical Specs -->
+<section class="section" id="specs">
+  <div class="section-title">Technical Specifications</div>
+  <div class="section-subtitle">ข้อมูลทางเทคนิคของวิดีโอ</div>
+  <div class="specs-grid">
+    <div class="spec-item">
+      <div class="spec-icon purple">&#128250;</div>
+      <div><div class="spec-label">Resolution</div><div class="spec-value">1920 x 1080 (Full HD)</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon cyan">&#127916;</div>
+      <div><div class="spec-label">Frame Rate</div><div class="spec-value">24 fps</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon green">&#128190;</div>
+      <div><div class="spec-label">Codec</div><div class="spec-value">H.264 + AAC</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon purple">&#127911;</div>
+      <div><div class="spec-label">Audio Mix</div><div class="spec-value">Narration 100% + SFX 30% + BGM 15%</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon cyan">&#9201;</div>
+      <div><div class="spec-label">Duration</div><div class="spec-value">48 seconds</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon green">&#128230;</div>
+      <div><div class="spec-label">File Size</div><div class="spec-value">~42 MB</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon purple">&#127926;</div>
+      <div><div class="spec-label">BGM Fade In</div><div class="spec-value">0:00 – 0:02 (2s)</div></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon cyan">&#127927;</div>
+      <div><div class="spec-label">BGM Fade Out</div><div class="spec-value">0:45 – 0:48 (3s)</div></div>
+    </div>
+  </div>
+
+  <!-- Color Palette -->
+  <div class="section-title" style="font-size:1.3rem;">Color & Visual Reference</div>
+  <div class="section-subtitle">ชุดสีที่ใช้ในวิดีโอ</div>
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="color-preview" style="background:#0A0A1A;"></div>
+      <div class="color-info"><div class="color-name">Background</div><div class="color-hex">#0A0A1A</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="color-preview" style="background:#A855F7;"></div>
+      <div class="color-info"><div class="color-name">Neon Purple</div><div class="color-hex">#A855F7</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="color-preview" style="background:#06B6D4;"></div>
+      <div class="color-info"><div class="color-name">Neon Cyan</div><div class="color-hex">#06B6D4</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="color-preview" style="background:#22C55E;"></div>
+      <div class="color-info"><div class="color-name">Neon Green</div><div class="color-hex">#22C55E</div></div>
+    </div>
+    <div class="color-swatch">
+      <div class="color-preview" style="background:#FFFFFF;"></div>
+      <div class="color-info"><div class="color-name">Text / Highlights</div><div class="color-hex">#FFFFFF</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Messages -->
+<section class="section" id="messages">
+  <div class="section-title">Key Messages Summary</div>
+  <div class="section-subtitle">6 ข้อความหลักและจุดประสงค์ของแต่ละข้อ</div>
+  <div class="msg-grid">
+    <div class="msg-card">
+      <div class="msg-num">1</div>
+      <div class="msg-content">
+        <div class="msg-text">ทำงานเร็วขึ้น 10 เท่า</div>
+        <div class="msg-purpose">Hook — สร้างความสนใจ</div>
+      </div>
+    </div>
+    <div class="msg-card">
+      <div class="msg-num">2</div>
+      <div class="msg-content">
+        <div class="msg-text">AI อ่านเอกสาร ตอบจากข้อมูลจริง</div>
+        <div class="msg-purpose">Credibility — ไม่ hallucinate</div>
+      </div>
+    </div>
+    <div class="msg-card">
+      <div class="msg-num">3</div>
+      <div class="msg-content">
+        <div class="msg-text">11 Sales Prompts ครบวงจร</div>
+        <div class="msg-purpose">Value — ครอบคลุมทุกสถานการณ์</div>
+      </div>
+    </div>
+    <div class="msg-card">
+      <div class="msg-num">4</div>
+      <div class="msg-content">
+        <div class="msg-text">ครอบคลุม Marketing + Strategy</div>
+        <div class="msg-purpose">Breadth — ไม่ใช่แค่ Sales</div>
+      </div>
+    </div>
+    <div class="msg-card">
+      <div class="msg-num">5</div>
+      <div class="msg-content">
+        <div class="msg-text">ประหยัด 7+ ชั่วโมงต่อดีล</div>
+        <div class="msg-purpose">ROI — ตัวเลขจับต้องได้</div>
+      </div>
+    </div>
+    <div class="msg-card">
+      <div class="msg-num">6</div>
+      <div class="msg-content">
+        <div class="msg-text">เข้าเว็บ Copy ใช้ได้ทันที</div>
+        <div class="msg-purpose">CTA — ง่าย ทำได้เลย</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Video Script for <strong>15 NotebookLM Prompts for Sales & Marketing Teams</strong></p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://aoddybryant-blip.github.io/notebooklm-prompts-th/" target="_blank">Prompts Website</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.75rem; color: var(--text-dim);">Built with Dark Theme + Neon Accents</p>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650;</button>
+
+<script>
+// Toggle clip accordion
+function toggleClip(header) {
+  const card = header.closest('.clip-card');
+  card.classList.toggle('open');
+}
+
+// Copy narration text
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Copy full script
+function copyFullScript() {
+  const script = `[0:00] จะเป็นยังไง ถ้าทีม Sales ของคุณ ทำงานได้เร็วขึ้น 10 เท่า ด้วย AI?
+
+[0:08] NotebookLM คือ AI จาก Google ที่อ่านเอกสารของคุณ แล้วตอบจากข้อมูลจริง ไม่มั่ว ไม่แต่ง
+
+[0:16] มี Prompt สำหรับ Sales ถึง 11 ตัว ตั้งแต่โต้ข้อโต้แย้ง เตรียม Battlecard ไปจนถึงปิดการขาย
+
+[0:24] ครอบคลุมทั้ง Marketing และ Strategy ตั้งแต่สร้าง Value Proposition ไปจนถึง Executive Summary
+
+[0:32] ประหยัดเวลาได้กว่า 7 ชั่วโมงต่อดีล เปลี่ยนเวลาที่เสียไปกับเอกสาร มาปิดการขายแทน
+
+[0:40] เข้าเว็บไซต์ Copy Prompt แล้วเริ่มใช้งานได้ทันที วันนี้เลย`;
+  const btn = document.getElementById('copyFullScript');
+  navigator.clipboard.writeText(script).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Full Script'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+  
+  // Back to top
+  const btn = document.getElementById('backToTop');
+  if (scrollTop > 500) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+});
+
+// Active nav link
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.navbar-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
